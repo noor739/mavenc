@@ -3,28 +3,28 @@ pipeline
     agent any
     stages
     {
-        stage('contionusDownload')
+        stage('contionusDownload_master')
         {
             steps
             {
                 git 'https://github.com/noor739/mavenc.git'
             }
         }
-            stage('contionusbuild')
+            stage('contionusbuild_master')
         {
             steps
             {
               sh 'mvn package'
             }
         }
-         stage('contionusDeployment')
+         stage('contionusDeployment_master')
         {
             steps
             {
               deploy adapters: [tomcat9(credentialsId: 'a8e8f778-2e00-4674-a50c-ce3fa09b94e4', path: '', url: 'http://172.31.17.162:8080')], contextPath: 'qaapp', war: '**/*.war'
             }
         }
-            stage('contionusTesting')
+            stage('contionusTesting_master')
         {
             steps
             {
@@ -33,7 +33,7 @@ pipeline
               
            }
        }
-        stage('contionusDelivery')
+        stage('contionusDelivery_master')
         {
             steps
             {
